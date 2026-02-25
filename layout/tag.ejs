@@ -1,0 +1,68 @@
+<% if (page.posts && page.posts.length > 0) { %>
+<div class="tag-posts-page container">
+  <div class="page-header animate-fade-in-up">
+    <h1 class="page-header__title">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+      </svg>
+      标签: <%= page.tag %>
+    </h1>
+    <p class="page-header__description">共 <%= page.posts.length %> 篇文章</p>
+    <a href="<%= url_for('/tags/') %>" class="page-header__back">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      返回标签列表
+    </a>
+  </div>
+
+  <div class="posts-list animate-fade-in-up animate-delay-1">
+    <% page.posts.each(function(post) { %>
+      <article class="post-card material-card">
+        <a href="<%= url_for(post.path) %>" class="post-card__link">
+          <div class="post-card__cover">
+            <% if (post.cover) { %>
+              <img src="<%= post.cover %>" alt="<%= post.title %>" loading="lazy">
+            <% } else { %>
+              <div class="post-card__cover-placeholder"></div>
+            <% } %>
+            <div class="post-card__overlay"></div>
+            <div class="post-card__info">
+              <div class="post-card__meta">
+                <span class="post-card__date"><%= date(post.date, 'YYYY-MM-DD') %></span>
+                <% if (post.categories && post.categories.length > 0) { %>
+                  <span class="post-card__category"><%= post.categories.toArray()[0].name %></span>
+                <% } %>
+              </div>
+              <h2 class="post-card__title"><%= post.title %></h2>
+            </div>
+          </div>
+        </a>
+      </article>
+    <% }); %>
+  </div>
+</div>
+<% } else { %>
+<div class="tags-page container">
+  <div class="page-header animate-fade-in-up">
+    <h1 class="page-header__title">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+      </svg>
+      标签
+    </h1>
+    <p class="page-header__description">共 <%= site.tags.length %> 个标签</p>
+  </div>
+
+  <div class="tags-cloud animate-fade-in-up animate-delay-1">
+    <% site.tags.sort('name').forEach(function(tag) { %>
+      <a href="<%= url_for(tag.path) %>" class="tags-cloud__tag" style="font-size: <%= Math.max(0.9, Math.min(1.5, 0.9 + tag.length * 0.05)) %>rem">
+        <span class="tags-cloud__name"><%= tag.name %></span>
+        <span class="tags-cloud__count"><%= tag.length %></span>
+      </a>
+    <% }); %>
+  </div>
+</div>
+<% } %>

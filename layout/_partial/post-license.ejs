@@ -1,0 +1,44 @@
+<% var license=page.license || theme.default_license || 'CC BY-NC-SA 4.0' ; var author=page.author || theme.author ||
+  config.author || '作者' ; var isOriginal=page.original !==false; var sourceUrl=page.source_url || '' ; var
+  licenseInfo={ 'CC BY-NC-SA 4.0' : { name: 'CC BY-NC-SA 4.0' ,
+  url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh' , desc: '署名-非商业性使用-相同方式共享 4.0 国际' } }; var
+  currentLicense=licenseInfo[license] || licenseInfo['CC BY-NC-SA 4.0']; %>
+  <div class="post-license animate-fade-in-up animate-delay-2">
+    <div class="post-license__header">
+      <span class="copyright-symbol">©</span>
+      <span>版权声明</span>
+    </div>
+    <div class="post-license__content">
+      <div class="post-license__row">
+        <div class="post-license__item">
+          <span class="post-license__label">本文作者：</span>
+          <span class="post-license__value">
+            <%= author %>
+          </span>
+        </div>
+        <div class="post-license__item">
+          <span class="post-license__label">文章类型：</span>
+          <span class="post-license__value">
+            <%= isOriginal ? '原创' : '转载' %>
+          </span>
+        </div>
+      </div>
+      <% if (!isOriginal && sourceUrl) { %>
+        <div class="post-license__item">
+          <span class="post-license__label">原文链接：</span>
+          <a href="<%= sourceUrl %>" class="post-license__link" target="_blank" rel="noopener">
+            <%= sourceUrl %>
+          </a>
+        </div>
+        <% } %>
+          <div class="post-license__notice">
+            <% if (isOriginal) { %>
+              本文为作者原创文章，遵循 <a href="<%= currentLicense.url %>" target="_blank" rel="noopener">
+                <%= currentLicense.name %>
+              </a> 许可协议，转载请注明出处。
+              <% } else { %>
+                本文仅供学习交流使用，版权归原作者所有，侵权请联系删除
+                <% } %>
+          </div>
+    </div>
+  </div>

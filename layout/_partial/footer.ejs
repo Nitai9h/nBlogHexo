@@ -1,0 +1,49 @@
+<footer class="footer">
+  <div class="footer__container container">
+    <div class="footer__content">
+      <div class="footer__left">
+        <div class="footer__themeInfo">
+          <p>nBlog</p>
+          <span class="footer__version">
+            <%= theme_version() %>
+          </span>
+        </div>
+        <div class="footer__links">
+          <% (theme.footer_links || []).forEach((link, index)=> { %>
+            <a href="<%= url_for(link.path) %>">
+              <%= link.name %>
+            </a>
+            <% if (index < theme.footer_links.length - 1) { %><span class="footer__links-divider">|</span>
+              <% } %>
+                <% }) %>
+        </div>
+      </div>
+      <div class="footer__center">
+        <p class="footer__copyright">
+          Copyright
+          © <%= date(Date.now(), 'YYYY' ) %>
+            <span class="footer__author">
+              <%= theme.author || config.author %>
+            </span>. All rights reserved.
+        </p>
+        <div class="footer__busuanzi">
+          <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+          <span class="footer__busuanzi-divider">|</span>
+          <span id="busuanzi_container_site_uv">访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>
+        </div>
+      </div>
+      <div class="footer__right">
+        <p style="height: 22px;">
+          <a href="<%= url_for('/sitemap.xml') %>" class="footer__sitemap">Sitemap</a>
+          <a href="<%= url_for('/rss.xml') %>" class="footer__rss">RSS 订阅</a>
+        </p>
+        <p class="footer__powered">
+          Powered by
+          <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> &
+          <a href="https://github.com/Nitai9h/nBlogHexo" target="_blank" rel="noopener">nBlogHexo</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>

@@ -1,0 +1,25 @@
+{
+  "name": "hexo-theme-nblog",
+  "version": "1.0.0",
+  "description": "A lightweight and minimalist blog theme",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nitai9h/nBlogHexo.git"
+  },
+  "keywords": [
+    "hexo",
+    "theme",
+    "nblog",
+    "material-design",
+    "glassmorphism",
+    "dark-mode",
+    "pjax",
+    "responsive"
+  ],
+  "author": "",
+  "license": "MIT"
+}

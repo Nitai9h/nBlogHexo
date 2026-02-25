@@ -1,0 +1,11 @@
+<div class="<%= page.layout %>-page container">
+  <div class="page-header animate-fade-in-up">
+    <h1 class="page-header__title"><%= page.title %></h1>
+    <% if (page.description) { %>
+      <p class="page-header__description"><%= page.description %></p>
+    <% } %>
+  </div>
+  <div class="page-content animate-fade-in-up animate-delay-1">
+    <%- page.content %>
+  </div>
+</div>

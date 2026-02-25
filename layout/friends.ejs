@@ -1,0 +1,57 @@
+<div class="friends-page container">
+  <div class="page-header animate-fade-in-up">
+    <h1 class="page-header__title">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+      </svg>
+      <%= page.title %>
+    </h1>
+    <% if (page.description) { %>
+      <p class="page-header__description"><%= page.description %></p>
+    <% } %>
+  </div>
+
+  <div class="page-content animate-fade-in-up animate-delay-1">
+    <% if (theme.friend_links && theme.friend_links.simple && theme.friend_links.simple.length > 0) { %>
+      <div class="friends-grid">
+        <% theme.friend_links.simple.forEach(function(friend) { %>
+          <a href="<%= friend.url %>" target="_blank" rel="noopener" class="friend-card material-card">
+            <div class="friend-card__avatar">
+              <img src="<%= friend.avatar %>" alt="<%= friend.name %>" loading="lazy">
+            </div>
+            <div class="friend-card__content">
+              <h3 class="friend-card__name"><%= friend.name %></h3>
+              <p class="friend-card__description"><%= friend.description %></p>
+            </div>
+          </a>
+        <% }); %>
+      </div>
+    <% } %>
+
+    <% if (theme.friend_links && theme.friend_links.cover && theme.friend_links.cover.length > 0) { %>
+      <div class="friends-grid" style="grid-template-columns: repeat(3, 1fr); <% if (theme.friend_links.simple && theme.friend_links.simple.length > 0) { %>margin-top: 24px;<% } %>">
+        <% theme.friend_links.cover.forEach(function(friend) { %>
+          <a href="<%= friend.url %>" target="_blank" rel="noopener" class="friend-card friend-card--cover material-card">
+            <div class="friend-card__cover">
+              <img src="<%= friend.cover %>" alt="<%= friend.name %>" loading="lazy">
+            </div>
+            <div class="friend-card__overlay"></div>
+            <div class="friend-card__content">
+              <div class="friend-card__avatar-wrapper">
+                <div class="friend-card__avatar">
+                  <img src="<%= friend.avatar %>" alt="<%= friend.name %>" loading="lazy">
+                </div>
+                <span class="friend-card__author"><%= friend.author || friend.name %></span>
+              </div>
+              <h3 class="friend-card__name"><%= friend.name %></h3>
+              <p class="friend-card__description"><%= friend.description %></p>
+            </div>
+          </a>
+        <% }); %>
+      </div>
+    <% } %>
+
+    <%- page.content %>
+  </div>
+</div>

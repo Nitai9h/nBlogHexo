@@ -1,0 +1,366 @@
+.admonition {
+  margin: 1.5em 0;
+  padding: 0;
+  border-radius: var(--border-radius);
+  background: var(--surface-color);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--admonition-color, var(--primary-color));
+  transition: all var(--transition-normal);
+}
+
+.admonition:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.admonition-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--admonition-bg, rgba(var(--surface-color-rgb), 0.5));
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--admonition-color, var(--primary-color));
+  margin: 0;
+  transition: background var(--transition-fast);
+}
+
+.admonition-title:hover {
+  background: var(--admonition-bg-hover, rgba(var(--surface-color-rgb), 0.7));
+}
+
+.admonition-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.admonition-content {
+  padding: 12px 16px;
+  color: var(--text-primary);
+}
+
+.admonition-content>*:first-child {
+  margin-top: 0;
+}
+
+.admonition-content>*:last-child {
+  margin-bottom: 0;
+}
+
+.admonition-content p {
+  margin-bottom: 0.8em;
+}
+
+.admonition-content p:last-child {
+  margin-bottom: 0;
+}
+
+.admonition.anote {
+  --admonition-color: var(--primary-color);
+  --admonition-bg: var(--primary-light);
+  --admonition-bg-hover: rgba(255, 127, 120, 0.25);
+}
+
+.admonition.anote .admonition-title {
+  color: var(--primary-dark);
+}
+
+.admonition.info,
+.admonition.todo {
+  --admonition-color: #0288D1;
+  --admonition-bg: rgba(2, 136, 209, 0.1);
+  --admonition-bg-hover: rgba(2, 136, 209, 0.15);
+}
+
+.admonition.info .admonition-title,
+.admonition.todo .admonition-title {
+  color: #01579B;
+}
+
+[data-theme="dark"] .admonition.info,
+[data-theme="dark"] .admonition.todo {
+  --admonition-color: #4FC3F7;
+  --admonition-bg: rgba(79, 195, 247, 0.1);
+  --admonition-bg-hover: rgba(79, 195, 247, 0.15);
+}
+
+[data-theme="dark"] .admonition.info .admonition-title,
+[data-theme="dark"] .admonition.todo .admonition-title {
+  color: #81D4FA;
+}
+
+.admonition.warning,
+.admonition.attention,
+.admonition.caution {
+  --admonition-color: #F57C00;
+  --admonition-bg: rgba(245, 124, 0, 0.1);
+  --admonition-bg-hover: rgba(245, 124, 0, 0.15);
+}
+
+.admonition.warning .admonition-title,
+.admonition.attention .admonition-title,
+.admonition.caution .admonition-title {
+  color: #E65100;
+}
+
+[data-theme="dark"] .admonition.warning,
+[data-theme="dark"] .admonition.attention,
+[data-theme="dark"] .admonition.caution {
+  --admonition-color: #FFB74D;
+  --admonition-bg: rgba(255, 183, 77, 0.1);
+  --admonition-bg-hover: rgba(255, 183, 77, 0.15);
+}
+
+[data-theme="dark"] .admonition.warning .admonition-title,
+[data-theme="dark"] .admonition.attention .admonition-title,
+[data-theme="dark"] .admonition.caution .admonition-title {
+  color: #FFCC80;
+}
+
+.admonition.error,
+.admonition.failure,
+.admonition.missing,
+.admonition.fail,
+.admonition.danger,
+.admonition.bug {
+  --admonition-color: #E53935;
+  --admonition-bg: rgba(229, 57, 53, 0.1);
+  --admonition-bg-hover: rgba(229, 57, 53, 0.15);
+}
+
+.admonition.error .admonition-title,
+.admonition.failure .admonition-title,
+.admonition.missing .admonition-title,
+.admonition.fail .admonition-title,
+.admonition.danger .admonition-title,
+.admonition.bug .admonition-title {
+  color: #C62828;
+}
+
+[data-theme="dark"] .admonition.error,
+[data-theme="dark"] .admonition.failure,
+[data-theme="dark"] .admonition.missing,
+[data-theme="dark"] .admonition.fail,
+[data-theme="dark"] .admonition.danger,
+[data-theme="dark"] .admonition.bug {
+  --admonition-color: #EF5350;
+  --admonition-bg: rgba(239, 83, 80, 0.1);
+  --admonition-bg-hover: rgba(239, 83, 80, 0.15);
+}
+
+[data-theme="dark"] .admonition.error .admonition-title,
+[data-theme="dark"] .admonition.failure .admonition-title,
+[data-theme="dark"] .admonition.missing .admonition-title,
+[data-theme="dark"] .admonition.fail .admonition-title,
+[data-theme="dark"] .admonition.danger .admonition-title,
+[data-theme="dark"] .admonition.bug .admonition-title {
+  color: #EF9A9A;
+}
+
+.admonition.success {
+  --admonition-color: #43A047;
+  --admonition-bg: rgba(67, 160, 71, 0.1);
+  --admonition-bg-hover: rgba(67, 160, 71, 0.15);
+}
+
+.admonition.success .admonition-title {
+  color: #2E7D32;
+}
+
+[data-theme="dark"] .admonition.success {
+  --admonition-color: #66BB6A;
+  --admonition-bg: rgba(102, 187, 106, 0.1);
+  --admonition-bg-hover: rgba(102, 187, 106, 0.15);
+}
+
+[data-theme="dark"] .admonition.success .admonition-title {
+  color: #A5D6A7;
+}
+
+.admonition.tip {
+  --admonition-color: #00897B;
+  --admonition-bg: rgba(0, 137, 123, 0.1);
+  --admonition-bg-hover: rgba(0, 137, 123, 0.15);
+}
+
+.admonition.tip .admonition-title {
+  color: #00695C;
+}
+
+[data-theme="dark"] .admonition.tip {
+  --admonition-color: #4DB6AC;
+  --admonition-bg: rgba(77, 182, 172, 0.1);
+  --admonition-bg-hover: rgba(77, 182, 172, 0.15);
+}
+
+[data-theme="dark"] .admonition.tip .admonition-title {
+  color: #80CBC4;
+}
+
+.admonition.question {
+  --admonition-color: #7CB342;
+  --admonition-bg: rgba(124, 179, 66, 0.1);
+  --admonition-bg-hover: rgba(124, 179, 66, 0.15);
+}
+
+.admonition.question .admonition-title {
+  color: #558B2F;
+}
+
+[data-theme="dark"] .admonition.question {
+  --admonition-color: #AED581;
+  --admonition-bg: rgba(174, 213, 129, 0.1);
+  --admonition-bg-hover: rgba(174, 213, 129, 0.15);
+}
+
+[data-theme="dark"] .admonition.question .admonition-title {
+  color: #C5E1A5;
+}
+
+.admonition.example {
+  --admonition-color: #7E57C2;
+  --admonition-bg: rgba(126, 87, 194, 0.1);
+  --admonition-bg-hover: rgba(126, 87, 194, 0.15);
+}
+
+.admonition.example .admonition-title {
+  color: #5E35B1;
+}
+
+[data-theme="dark"] .admonition.example {
+  --admonition-color: #9575CD;
+  --admonition-bg: rgba(149, 117, 205, 0.1);
+  --admonition-bg-hover: rgba(149, 117, 205, 0.15);
+}
+
+[data-theme="dark"] .admonition.example .admonition-title {
+  color: #B39DDB;
+}
+
+.admonition.quote {
+  --admonition-color: #78909C;
+  --admonition-bg: rgba(120, 144, 156, 0.1);
+  --admonition-bg-hover: rgba(120, 144, 156, 0.15);
+}
+
+.admonition.quote .admonition-title {
+  color: #546E7A;
+}
+
+[data-theme="dark"] .admonition.quote {
+  --admonition-color: #90A4AE;
+  --admonition-bg: rgba(144, 164, 174, 0.1);
+  --admonition-bg-hover: rgba(144, 164, 174, 0.15);
+}
+
+[data-theme="dark"] .admonition.quote .admonition-title {
+  color: #B0BEC5;
+}
+
+.admonition.details {
+  --admonition-color: #0288D1;
+  --admonition-bg: rgba(2, 136, 209, 0.1);
+  --admonition-bg-hover: rgba(2, 136, 209, 0.15);
+}
+
+.admonition.details .admonition-title {
+  color: #01579B;
+}
+
+[data-theme="dark"] .admonition.details {
+  --admonition-color: #4FC3F7;
+  --admonition-bg: rgba(79, 195, 247, 0.1);
+  --admonition-bg-hover: rgba(79, 195, 247, 0.15);
+}
+
+[data-theme="dark"] .admonition.details .admonition-title {
+  color: #81D4FA;
+}
+
+.admonition.collapsible .admonition-title {
+  cursor: pointer;
+  user-select: none;
+}
+
+.admonition.collapsible .admonition-title::before {
+  content: '▼';
+  margin-right: 8px;
+  transition: transform var(--transition-fast);
+  display: inline-block;
+  font-size: 0.8em;
+}
+
+.admonition.collapsible.collapsed .admonition-title::before {
+  transform: rotate(-90deg);
+}
+
+.admonition.collapsible.collapsed .admonition-content {
+  display: none;
+}
+
+.admonition .admonition {
+  margin: 0.8em 0;
+}
+
+.mdi {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2em;
+  height: 1.2em;
+  font-style: normal;
+}
+
+.mdi-information-outline::before {
+  content: 'ℹ';
+}
+
+.mdi-alert-outline::before {
+  content: '⚠';
+}
+
+.mdi-alert-circle-outline::before {
+  content: '!';
+}
+
+.mdi-lightbulb-outline::before {
+  content: '💡';
+}
+
+.mdi-check-circle-outline::before {
+  content: '✓';
+}
+
+.mdi-help-circle-outline::before {
+  content: '?';
+}
+
+.mdi-format-quote-close::before {
+  content: '"';
+}
+
+.mdi-code-braces::before {
+  content: '</>';
+}
+
+.mdi-bug-outline::before {
+  content: '🐛';
+}
+
+.mdi-clipboard-check-outline::before {
+  content: '📋';
+}
+
+.mdi-clipboard-list-outline::before {
+  content: '📝';
+}
+
+.mdi:before,
+.mdi-set {
+  display: flex !important;
+  line-height: normal !important;
+}

@@ -1,0 +1,135 @@
+.highlight {
+  background: #282c34;
+  border-radius: 10px;
+  margin: 1em 0;
+  overflow-x: auto;
+  position: relative;
+  font-family: Consolas, Menlo, 'Fira Code', monospace;
+}
+
+.highlight .gutter {
+  width: 20px;
+  border-right: 1px solid #3e4451;
+}
+
+.highlight .gutter .line {
+  color: #5c6370;
+}
+
+.highlight .code {
+  color: #abb2bf;
+}
+
+.highlight .hljs-comment,
+.highlight .hljs-quote {
+  color: #5c6370;
+  font-style: italic;
+}
+
+.highlight .hljs-doctag,
+.highlight .hljs-keyword,
+.highlight .hljs-formula {
+  color: #c678dd;
+}
+
+.highlight .hljs-section,
+.highlight .hljs-name,
+.highlight .hljs-selector-tag,
+.highlight .hljs-deletion,
+.highlight .hljs-subst {
+  color: #e06c75;
+}
+
+.highlight .hljs-literal {
+  color: #56b6c2;
+}
+
+.highlight .hljs-string,
+.highlight .hljs-regexp,
+.highlight .hljs-addition,
+.highlight .hljs-attribute,
+.highlight .hljs-meta .hljs-string {
+  color: #98c379;
+}
+
+.highlight .hljs-attr,
+.highlight .hljs-variable,
+.highlight .hljs-template-variable,
+.highlight .hljs-type,
+.highlight .hljs-selector-class,
+.highlight .hljs-selector-attr,
+.highlight .hljs-selector-pseudo,
+.highlight .hljs-number {
+  color: #d19a66;
+}
+
+.highlight .hljs-symbol,
+.highlight .hljs-bullet,
+.highlight .hljs-link,
+.highlight .hljs-meta,
+.highlight .hljs-selector-id,
+.highlight .hljs-title {
+  color: #61aeee;
+}
+
+.highlight .hljs-built_in,
+.highlight .hljs-title.class_,
+.highlight .hljs-class .hljs-title {
+  color: #e6c07b;
+}
+
+.highlight .hljs-emphasis {
+  font-style: italic;
+}
+
+.highlight .hljs-strong {
+  font-weight: bold;
+}
+
+.highlight .hljs-link {
+  text-decoration: underline;
+}
+
+.highlight .hljs-meta .hljs-keyword {
+  color: #56b6c2;
+}
+
+.highlight .hljs-meta {
+  color: #61aeee;
+}
+
+.highlight .hljs-meta .hljs-string {
+  color: #98c379;
+}
+
+.highlight .hljs-params {
+  color: #abb2bf;
+}
+
+.highlight .hljs-property {
+  color: #e06c75;
+}
+
+.highlight .hljs-tag {
+  color: #e06c75;
+}
+
+.highlight .hljs-function {
+  color: #61aeee;
+}
+
+.highlight .hljs-title.function_ {
+  color: #61aeee;
+}
+
+.highlight .hljs-params {
+  color: #abb2bf;
+}
+
+.highlight .hljs-variable.language_ {
+  color: #e06c75;
+}
+
+.highlight .hljs-attr {
+  color: #d19a66;
+}
