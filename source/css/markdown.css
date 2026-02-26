@@ -14,7 +14,6 @@
   margin-bottom: 0.5em;
   font-weight: 600;
   line-height: 1.4;
-  display: flex;
   align-items: center;
 }
 
@@ -29,7 +28,6 @@
   opacity: 1;
   transition: opacity var(--transition-fast);
   border-bottom: none;
-  margin-right: 0.3em;
   position: relative;
   overflow: hidden;
   font-size: larger;
@@ -104,9 +102,7 @@
 
 .post-body p {
   margin-bottom: 1em;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  word-wrap: break-word;
 }
 
 .post-body a {
@@ -114,8 +110,10 @@
   text-decoration: none;
   position: relative;
   z-index: 1;
-  white-space: nowrap;
   transition: color var(--transition-fast);
+  bottom: -0.5em;
+  right: 0.1em;
+  word-break: break-word;
 }
 
 .post-body a::before {
@@ -137,7 +135,7 @@
 
 .post-body strong {
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--primary-color);
 }
 
 .post-body em {
@@ -147,7 +145,7 @@
 .post-body ul,
 .post-body ol {
   margin-bottom: 1em;
-  padding-left: 2em;
+  padding-left: 1em;
 }
 
 .post-body li {
@@ -279,9 +277,10 @@
 }
 
 .post-body .highlight-wrap .highlight {
-  margin: 0;
+  margin: 5px;
   padding: 5px;
   overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .post-body .highlight-wrap .copy-btn {
@@ -329,6 +328,23 @@
   height: auto;
   border-radius: var(--border-radius-sm);
   margin: 1em 0;
+}
+
+.post-body .medium-zoom-image {
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.medium-zoom-image--opened {
+  cursor: zoom-out;
+  z-index: 999;
+}
+
+.medium-zoom-overlay {
+  background: unset !important;
+  z-index: 998;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 .post-body figure {
@@ -446,9 +462,5 @@
   .post-body table {
     display: block;
     overflow-x: auto;
-  }
-
-  .post-body .highlight-wrap .copy-btn {
-    opacity: 1;
   }
 }

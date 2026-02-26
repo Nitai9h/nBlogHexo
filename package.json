@@ -1,6 +1,6 @@
 {
   "name": "hexo-theme-nblog",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A lightweight and minimalist blog theme",
   "main": "index.js",
   "scripts": {
@@ -20,6 +20,10 @@
     "pjax",
     "responsive"
   ],
-  "author": "",
-  "license": "MIT"
+  "author": "Nitai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nitai9h/nBlogHexo/issues"
+  },
+  "homepage": "https://github.com/Nitai9h/nBlogHexo#readme"
 }

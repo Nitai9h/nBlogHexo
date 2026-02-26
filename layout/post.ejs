@@ -20,7 +20,8 @@
         <header class="post-header animate-fade-in-up">
           <% if (page.cover) { %>
             <div class="post-header__cover">
-              <img src="<%= page.cover %>" alt="<%= page.title %>" loading="lazy">
+              <img data-src="<%= page.cover %>" alt="<%= page.title %>" <%=theme.medium_zoom && theme.medium_zoom.enable
+                ? ' data-zoomable' : '' %>>
             </div>
             <% } %>
               <h1 class="post-header__title">

@@ -275,6 +275,10 @@ button {
   transform: translateY(-100%);
 }
 
+.header:has(.header__nav--open).header--hidden {
+  transform: unset;
+}
+
 .header__container {
   display: flex;
   align-items: center;

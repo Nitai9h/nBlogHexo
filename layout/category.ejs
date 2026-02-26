@@ -1,76 +1,87 @@
-<% if (page.posts && page.posts.length > 0) { %>
-<div class="category-posts-page container">
-  <div class="page-header animate-fade-in-up">
-    <h1 class="page-header__title">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-      </svg>
-      分类: <%= page.category %>
-    </h1>
-    <p class="page-header__description">共 <%= page.posts.length %> 篇文章</p>
-    <a href="<%= url_for('/categories/') %>" class="page-header__back">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <polyline points="15 18 9 12 15 6"></polyline>
-      </svg>
-      返回分类列表
-    </a>
-  </div>
+<% if (page.posts && page.posts.length> 0) { %>
+  <div class="category-posts-page container">
+    <div class="page-header animate-fade-in-up">
+      <h1 class="page-header__title">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+        </svg>
+        分类: <%= page.category %>
+      </h1>
+      <p class="page-header__description">共 <%= page.posts.length %> 篇文章</p>
+      <a href="<%= url_for('/categories/') %>" class="page-header__back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        返回分类列表
+      </a>
+    </div>
 
-  <div class="posts-list animate-fade-in-up animate-delay-1">
-    <% page.posts.each(function(post) { %>
-      <article class="post-card material-card">
-        <a href="<%= url_for(post.path) %>" class="post-card__link">
-          <div class="post-card__cover">
-            <% if (post.cover) { %>
-              <img src="<%= post.cover %>" alt="<%= post.title %>" loading="lazy">
-            <% } else { %>
-              <div class="post-card__cover-placeholder"></div>
-            <% } %>
-            <div class="post-card__overlay"></div>
-            <div class="post-card__info">
-              <div class="post-card__meta">
-                <span class="post-card__date"><%= date(post.date, 'YYYY-MM-DD') %></span>
-                <% if (post.categories && post.categories.length > 0) { %>
-                  <span class="post-card__category"><%= post.categories.toArray()[0].name %></span>
-                <% } %>
-              </div>
-              <h2 class="post-card__title"><%= post.title %></h2>
+    <div class="posts-list animate-fade-in-up animate-delay-1">
+      <% page.posts.each(function(post) { %>
+        <article class="post-card material-card">
+          <a href="<%= url_for(post.path) %>" class="post-card__link">
+            <div class="post-card__cover">
+              <% if (post.cover) { %>
+                <img src="<%= post.cover %>" alt="<%= post.title %>" loading="lazy">
+                <% } else { %>
+                  <div class="post-card__cover-placeholder"></div>
+                  <% } %>
+                    <div class="post-card__overlay"></div>
+                    <div class="post-card__info">
+                      <div class="post-card__meta">
+                        <span class="post-card__date">
+                          <%= date(post.date, 'YYYY-MM-DD' ) %>
+                        </span>
+                        <% if (post.categories && post.categories.length> 0) { %>
+                          <span class="post-card__category">
+                            <%= post.categories.toArray()[0].name %>
+                          </span>
+                          <% } %>
+                      </div>
+                      <h2 class="post-card__title">
+                        <%= post.title %>
+                      </h2>
+                    </div>
             </div>
-          </div>
-        </a>
-      </article>
-    <% }); %>
+          </a>
+        </article>
+        <% }); %>
+    </div>
   </div>
-</div>
-<% } else { %>
-<div class="categories-page container">
-  <div class="page-header animate-fade-in-up">
-    <h1 class="page-header__title">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-      </svg>
-      分类
-    </h1>
-    <p class="page-header__description">共 <%= site.categories.length %> 个分类</p>
-  </div>
-
-  <div class="categories-grid animate-fade-in-up animate-delay-1">
-    <% site.categories.sort('name').forEach(function(category) { %>
-      <a href="<%= url_for(category.path) %>" class="category-card material-card">
-        <div class="category-card__icon">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+  <% } else { %>
+    <div class="categories-page container">
+      <div class="page-header animate-fade-in-up">
+        <h1 class="page-header__title">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
           </svg>
-        </div>
-        <div class="category-card__content">
-          <h3 class="category-card__name"><%= category.name %></h3>
-          <span class="category-card__count"><%= category.length %> 篇文章</span>
-        </div>
-        <svg class="category-card__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <polyline points="9 18 15 12 9 6"></polyline>
-        </svg>
-      </a>
-    <% }); %>
-  </div>
-</div>
-<% } %>
+          分类
+        </h1>
+        <p class="page-header__description">共 <%= site.categories.length %> 个分类</p>
+      </div>
+
+      <div class="categories-grid animate-fade-in-up animate-delay-1">
+        <% site.categories.sort('name').forEach(function(category) { %>
+          <a href="<%= url_for(category.path) %>" class="category-card material-card">
+            <div class="category-card__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <div class="category-card__content">
+              <h3 class="category-card__name">
+                <%= category.name %>
+              </h3>
+              <span class="category-card__count">
+                <%= category.length %> 篇文章
+              </span>
+            </div>
+            <svg class="category-card__arrow" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+          <% }); %>
+      </div>
+    </div>
+    <% } %>

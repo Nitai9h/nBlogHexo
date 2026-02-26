@@ -338,6 +338,33 @@
         setTimeout(updateTocPosition, 500);
     }
 
+    function initMediumZoom() {
+        if (typeof mediumZoom === 'undefined') return;
+
+        const postBody = document.getElementById('postBody');
+        if (!postBody) return;
+
+        const images = postBody.querySelectorAll('.markdown-body img, .post-body img, article img');
+        if (images.length === 0) return;
+
+        images.forEach(img => {
+            if (img.closest('a')) return;
+            if (img.classList.contains('medium-zoom-image')) return;
+            img.classList.add('medium-zoom-image');
+        });
+
+        document.querySelectorAll('[data-zoomable]').forEach(function(img) {
+            if (!img.classList.contains('medium-zoom-image')) {
+                img.classList.add('medium-zoom-image');
+            }
+        });
+
+        mediumZoom('.medium-zoom-image', {
+            margin: 24,
+            background: getComputedStyle(document.documentElement).getPropertyValue('--bg-color') || '#fff'
+        });
+    }
+
     function initPage() {
         header = document.getElementById('header');
         nav = document.getElementById('nav');
@@ -357,11 +384,13 @@
         setActiveNavLink();
         initCodeBlocks();
         initToc();
+        initMediumZoom();
 
         window.scrollTo(0, 0);
     }
 
     window.initPage = initPage;
+    window.initMediumZoom = initMediumZoom;
 
     function init() {
         initTheme();

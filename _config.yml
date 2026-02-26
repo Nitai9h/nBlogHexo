@@ -75,3 +75,11 @@ pjax:
 
 canonical:
   enable: true
+
+medium_zoom:
+  enable: true
+  margin: 24
+
+lazyload:
+  enable: true
+  placeholder: blur

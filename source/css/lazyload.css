@@ -1,0 +1,169 @@
+.lazyload-wrapper {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-color);
+  border-radius: var(--border-radius);
+}
+
+.lazyload-wrapper--inline {
+  display: inline-block;
+}
+
+img[data-src] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  min-height: 1px;
+  min-width: 1px;
+}
+
+img[data-src].lazyload-image {
+  visibility: visible !important;
+  opacity: 0;
+}
+
+.lazyload-skeleton {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      var(--surface-color) 0%,
+      rgba(var(--surface-color-rgb), 0.8) 50%,
+      var(--surface-color) 100%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.lazyload-image {
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 0.5s ease, filter 0.8s ease;
+  will-change: opacity, filter;
+}
+
+.lazyload-image.lazyload-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+  filter: blur(20px);
+  z-index: 2;
+}
+
+.lazyload-image.lazyload-loaded {
+  opacity: 1;
+  filter: blur(0);
+}
+
+.lazyload-image.lazyload-loaded.lazyload-placeholder {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.lazyload-image.lazyload-error {
+  opacity: 1;
+  filter: none;
+}
+
+.lazyload-error-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--surface-color);
+  color: var(--text-secondary);
+  font-size: 14px;
+  z-index: 3;
+}
+
+.lazyload-error-placeholder svg {
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+}
+
+.lazyload-wrapper[data-aspect-ratio] {
+  aspect-ratio: attr(data-aspect-ratio);
+}
+
+.lazyload-wrapper--loaded .lazyload-skeleton {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lazyload-wrapper--error .lazyload-skeleton {
+  display: none;
+}
+
+.post-header__cover .lazyload-wrapper,
+.post-header__cover .lazyload-image {
+  width: 100%;
+  height: 100%;
+}
+
+.post-card__cover .lazyload-wrapper,
+.post-card__cover .lazyload-image {
+  width: 100%;
+  height: 100%;
+}
+
+.friend-card__avatar .lazyload-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.friend-card__avatar .lazyload-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.author-card__avatar .lazyload-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.author-card__avatar .lazyload-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.markdown-body .lazyload-wrapper,
+.post-body .lazyload-wrapper {
+  margin: 16px 0;
+}
+
+.markdown-body .lazyload-image,
+.post-body .lazyload-image {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  border-radius: var(--border-radius-sm);
+}
+
+.medium-zoom-image.lazyload-image {
+  cursor: zoom-in;
+}
+
+.medium-zoom-image.lazyload-loaded {
+  cursor: zoom-in;
+}
