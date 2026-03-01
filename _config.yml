@@ -1,6 +1,8 @@
 #! 注意! 为了更新 npm package 后你的数据不会丢失
-#! 请将此文件复制到根目录并重命名为 `_config.nblog.yml` 并在此文件的基础上进行站点
+#! 请将此文件复制到根目录并重命名为 `_config.nblog.yml` 并在此文件的基础上进行站点配置
 default_license: CC BY-NC-SA 4.0
+
+primary_color: '#FF7F78'
 
 site_name: My Blog
 author: Your Name
@@ -83,3 +85,9 @@ medium_zoom:
 lazyload:
   enable: true
   placeholder: blur
+
+notifications:
+  enable: true
+  interval: 10000
+  items:
+    - message: '欢迎访问我的博客！'
