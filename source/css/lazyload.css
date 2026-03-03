@@ -10,15 +10,18 @@
 }
 
 img[data-src] {
-  opacity: 0 !important;
-  visibility: hidden !important;
+  opacity: 0;
   min-height: 1px;
   min-width: 1px;
 }
 
 img[data-src].lazyload-image {
-  visibility: visible !important;
   opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+img[data-src].lazyload-loaded {
+  opacity: 1;
 }
 
 .lazyload-skeleton {

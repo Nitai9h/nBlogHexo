@@ -51,11 +51,7 @@
           }
         </style>
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
-          rel="stylesheet">
+        <link rel="preload" href="<%= url_for('/css/main.css') %>" as="style">
         <link rel="stylesheet" href="<%= url_for('/css/main.css') %>">
         <% if (theme.lazyload && theme.lazyload.enable) { %>
           <link rel="stylesheet" href="<%= url_for('/css/lazyload.css') %>">
@@ -105,78 +101,59 @@
       </main>
       <%- partial('_partial/footer') %>
   </div>
-  <script src="<%= url_for('/js/main.js') %>"></script>
+  <script defer src="<%= url_for('/js/main.js') %>"></script>
   <% if (theme.lazyload && theme.lazyload.enable) { %>
-    <script src="<%= url_for('/js/lazyload.js') %>"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        if (typeof initLazyload === 'function') {
-          initLazyload({
-            rootMargin: '100px 0px',
-            threshold: 0.01
-          });
-        }
-      });
-      document.addEventListener('pjax:complete', function () {
-        if (typeof refreshLazyload === 'function') {
-          refreshLazyload();
-        }
-      });
-    </script>
+    <script defer src="<%= url_for('/js/lazyload.js') %>"></script>
     <% } %>
       <% if (theme.medium_zoom && theme.medium_zoom.enable) { %>
-        <script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>
-        <script>
-          document.addEventListener('DOMContentLoaded', function () {
-            if (typeof initMediumZoom === 'function') {
-              initMediumZoom();
-            }
-          });
-          document.addEventListener('pjax:complete', function () {
-            if (typeof initMediumZoom === 'function') {
-              initMediumZoom();
-            }
-          });
-        </script>
+        <script defer src="<%= url_for('/js/lib/medium-zoom.min.js') %>"></script>
         <% } %>
           <% if (theme.pjax && theme.pjax.enable) { %>
-            <script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js"></script>
+            <script defer src="<%= url_for('/js/lib/pjax.min.js') %>"></script>
             <script>
-              var pjax = new Pjax({
-                selectors: [
-                  'title',
-                  'meta[name="description"]',
-                  'meta[property="og:title"]',
-                  'meta[property="og:description"]',
-                  'meta[property="og:url"]',
-                  'meta[property="og:image"]',
-                  'meta[property="article:published_time"]',
-                  'meta[property="article:modified_time"]',
-                  '#pjax-container',
-                  '#header'
-                ],
-                cacheBust: false
-              });
+              document.addEventListener('DOMContentLoaded', function () {
+                if (typeof Pjax !== 'undefined') {
+                  var pjax = new Pjax({
+                    selectors: [
+                      'title',
+                      'meta[name="description"]',
+                      'meta[property="og:title"]',
+                      'meta[property="og:description"]',
+                      'meta[property="og:url"]',
+                      'meta[property="og:image"]',
+                      'meta[property="article:published_time"]',
+                      'meta[property="article:modified_time"]',
+                      '#pjax-container',
+                      '#header'
+                    ],
+                    cacheBust: false
+                  });
 
-              document.addEventListener('pjax:complete', function () {
-                if (typeof initPage === 'function') {
-                  initPage();
-                }
-                if (typeof twikoo !== 'undefined' && twikoo.init) {
-                  twikoo.init({
-                    envId: '<%= theme.twikoo.envId %>',
-                    el: '#twikoo-comment'
+                  document.addEventListener('pjax:complete', function () {
+                    if (typeof initPage === 'function') {
+                      initPage();
+                    }
+                    if (typeof twikoo !== 'undefined' && twikoo.init) {
+                      twikoo.init({
+                        envId: '<%= theme.twikoo.envId %>',
+                        el: '#twikoo-comment'
+                      });
+                    }
                   });
                 }
               });
             </script>
             <% } %>
               <% if (is_post() && theme.twikoo && theme.twikoo.enable) { %>
-                <script src="https://cdn.jsdelivr.net/npm/twikoo@1.6.39/dist/twikoo.all.min.js"></script>
+                <script defer src="<%= url_for('/js/lib/twikoo.all.min.js') %>"></script>
                 <script>
-                  twikoo.init({
-                    envId: '<%= theme.twikoo.envId %>',
-                    el: '#twikoo-comment'
+                  document.addEventListener('DOMContentLoaded', function () {
+                    if (typeof twikoo !== 'undefined' && twikoo.init) {
+                      twikoo.init({
+                        envId: '<%= theme.twikoo.envId %>',
+                        el: '#twikoo-comment'
+                      });
+                    }
                   });
                 </script>
                 <% } %>

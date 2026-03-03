@@ -22,7 +22,7 @@
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
-  --font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
   --font-mono: 'Fira Code', 'Consolas', monospace;
   --header-height: 64px;
   --sidebar-width: 280px;

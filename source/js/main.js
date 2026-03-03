@@ -249,13 +249,8 @@
         }
 
         const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js';
-        script.onload = function () {
-            const vueScript = document.createElement('script');
-            vueScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/vue.min.js';
-            vueScript.onload = callback;
-            document.head.appendChild(vueScript);
-        };
+        script.src = '/js/lib/highlight.min.js';
+        script.onload = callback;
         document.head.appendChild(script);
     }
 
@@ -367,11 +362,11 @@
 
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = 'https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.28.2/tocbot.css';
+        link.href = '/css/tocbot.css';
         document.head.appendChild(link);
 
         const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.28.2/tocbot.min.js';
+        script.src = '/js/lib/tocbot.min.js';
         script.onload = callback;
         document.head.appendChild(script);
     }
@@ -591,6 +586,9 @@
         initToc();
         initMediumZoom();
         initNotifications();
+        if (typeof refreshLazyload === 'function') {
+            refreshLazyload();
+        }
 
         window.scrollTo(0, 0);
     }
@@ -626,7 +624,20 @@
 
         initCodeBlocks();
         initToc();
+        initMediumZoom();
         initNotifications();
+        initLazyloadAuto();
+    }
+
+    function initLazyloadAuto() {
+        if (typeof initLazyload === 'function') {
+            initLazyload({
+                rootMargin: '100px 0px',
+                threshold: 0.01
+            });
+        } else if (typeof refreshLazyload === 'function') {
+            refreshLazyload();
+        }
     }
 
     function handleOutsideClick(e) {

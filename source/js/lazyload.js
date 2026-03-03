@@ -107,6 +107,7 @@
             img.src = src;
 
             img.classList.add('lazyload-loaded');
+            img.classList.remove('lazyload-image');
             if (wrapper) {
                 wrapper.classList.add('lazyload-wrapper--loaded');
             }
@@ -122,6 +123,8 @@
 
         tempImg.onerror = function () {
             img.classList.add('lazyload-error');
+            img.classList.remove('lazyload-image');
+            img.style.opacity = '1';
             if (wrapper) {
                 wrapper.classList.add('lazyload-wrapper--error');
                 self.showErrorPlaceholder(wrapper, src);
@@ -179,4 +182,22 @@
     window.initLazyload = initLazyload;
     window.refreshLazyload = refreshLazyload;
     window.destroyLazyload = destroyLazyload;
+
+    function autoInit() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function () {
+                initLazyload({
+                    rootMargin: '100px 0px',
+                    threshold: 0.01
+                });
+            });
+        } else {
+            initLazyload({
+                rootMargin: '100px 0px',
+                threshold: 0.01
+            });
+        }
+    }
+
+    autoInit();
 })();
