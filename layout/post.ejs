@@ -20,8 +20,7 @@
         <header class="post-header animate-fade-in-up">
           <% if (page.cover) { %>
             <div class="post-header__cover">
-              <img data-src="<%= page.cover %>" alt="<%= page.title %>" <%=theme.medium_zoom && theme.medium_zoom.enable
-                ? ' data-zoomable' : '' %>>
+              <img data-src="<%= page.cover %>" alt="<%= page.title %>">
             </div>
             <% } %>
               <h1 class="post-header__title">
@@ -128,7 +127,7 @@
               </nav>
       </div>
 
-      <% if (theme.twikoo && theme.twikoo.enable) { %>
+      <% if (theme.twikoo && theme.twikoo.enable && page.comments !== false) { %>
         <section class="post-comments animate-fade-in-up animate-delay-4">
           <div id="twikoo-comment"></div>
         </section>

@@ -130,7 +130,7 @@ button {
 }
 
 .material-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   box-shadow: var(--shadow-lg);
 }
 
@@ -505,6 +505,7 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  white-space: nowrap;
 }
 
 .footer__left {
@@ -532,7 +533,7 @@ button {
 
 .footer__copyright,
 .footer__themeInfo {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--text-secondary);
   display: flex;
   flex-direction: row;
@@ -560,7 +561,7 @@ button {
 
 .footer__links a {
   padding: 0;
-  font-size: 13px;
+  font-size: 11px;
   text-decoration: none;
   transition: color var(--transition-fast);
 }
@@ -583,12 +584,12 @@ button {
 .footer__rss,
 .footer__sitemap {
   color: var(--primary-color);
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
 }
 
 .footer__powered {
-  font-size: 13px;
+  font-size: 11px;
   color: var(--text-secondary);
   display: flex;
   align-items: center;
@@ -599,17 +600,17 @@ button {
   text-decoration: none;
 }
 
-.footer__busuanzi {
-  font-size: 14px;
+.footer__vercount {
+  font-size: 12px;
   color: var(--text-secondary);
 }
 
-.footer__busuanzi #busuanzi_value_site_pv,
-.footer__busuanzi #busuanzi_value_site_uv {
+.footer__vercount #vercount_value_site_pv,
+.footer__vercount #vercount_value_site_uv {
   color: var(--primary-dark);
 }
 
-.footer__busuanzi-divider {
+.footer__vercount-divider {
   margin: 0 8px;
 }
 
@@ -760,13 +761,8 @@ button {
 .notification-banner__content {
   position: relative;
   min-height: 44px;
-  cursor: grab;
   user-select: none;
   transition: height 0.3s ease;
-}
-
-.notification-banner__content:active {
-  cursor: grabbing;
 }
 
 .notification-banner__item {
@@ -1027,6 +1023,21 @@ button {
   border-color: var(--primary-color);
 }
 
+.pagination .space {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  padding: 0 12px;
+  border-radius: var(--border-radius-sm);
+  font-size: 14px;
+  color: var(--text-secondary);
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  transition: all var(--transition-fast);
+}
+
 .page-header {
   text-align: center;
   padding: 40px 0;
@@ -1159,7 +1170,7 @@ button {
 }
 
 .post-footer__tag {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--primary-color);
   padding: 4px 12px;
   background: var(--border-color);
@@ -2238,22 +2249,8 @@ html:hover {
   position: relative;
   z-index: 1;
   white-space: nowrap;
-  transition: color var(--transition-fast);
 }
 
 .post-license__notice a::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 0;
-  background: var(--btn-plain-bg-hover);
-  transition: height var(--transition-fast);
-  transform-origin: bottom;
-  z-index: -1;
-}
-
-.post-license__notice a:hover::before {
-  height: 100%;
+  height: 0%;
 }

@@ -60,7 +60,7 @@
               <link rel="stylesheet" href="<%= url_for('/css/markdown.css') %>">
               <link rel="stylesheet" href="<%= url_for('/css/highlight.css') %>">
               <link rel="stylesheet" href="<%= url_for('/css/admonition.css') %>">
-              <% if (theme.twikoo && theme.twikoo.enable) { %>
+              <% if (theme.twikoo && theme.twikoo.enable && page.comments !==false) { %>
                 <link rel="stylesheet" href="<%= url_for('/css/twikoo.css') %>">
                 <% } %>
                   <% } %>
@@ -106,10 +106,10 @@
     <script defer src="<%= url_for('/js/lazyload.js') %>"></script>
     <% } %>
       <% if (theme.medium_zoom && theme.medium_zoom.enable) { %>
-        <script defer src="<%= url_for('/js/lib/medium-zoom.min.js') %>"></script>
+        <script defer src="<%= url_for('/lib/js/medium-zoom.min.js') %>"></script>
         <% } %>
           <% if (theme.pjax && theme.pjax.enable) { %>
-            <script defer src="<%= url_for('/js/lib/pjax.min.js') %>"></script>
+            <script defer src="<%= url_for('/lib/js/pjax.min.js') %>"></script>
             <script>
               document.addEventListener('DOMContentLoaded', function () {
                 if (typeof Pjax !== 'undefined') {
@@ -133,7 +133,7 @@
                     if (typeof initPage === 'function') {
                       initPage();
                     }
-                    if (typeof twikoo !== 'undefined' && twikoo.init) {
+                    if (typeof twikoo !== 'undefined' && twikoo.init && document.querySelector('#twikoo-comment')) {
                       twikoo.init({
                         envId: '<%= theme.twikoo.envId %>',
                         el: '#twikoo-comment'
@@ -144,8 +144,8 @@
               });
             </script>
             <% } %>
-              <% if (is_post() && theme.twikoo && theme.twikoo.enable) { %>
-                <script defer src="<%= url_for('/js/lib/twikoo.all.min.js') %>"></script>
+              <% if (is_post() && theme.twikoo && theme.twikoo.enable && page.comments !==false) { %>
+                <script defer src="<%= url_for('/lib/js/twikoo.all.min.js') %>"></script>
                 <script>
                   document.addEventListener('DOMContentLoaded', function () {
                     if (typeof twikoo !== 'undefined' && twikoo.init) {

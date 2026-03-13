@@ -249,7 +249,7 @@
         }
 
         const script = document.createElement('script');
-        script.src = '/js/lib/highlight.min.js';
+        script.src = '/lib/js/highlight.min.js';
         script.onload = callback;
         document.head.appendChild(script);
     }
@@ -257,24 +257,31 @@
     function applyHighlight(element, language) {
         if (!window.hljs) return;
 
-        const codeElement = element.querySelector('code') || element.querySelector('.code pre') || element.querySelector('pre');
+        const codeElement = element.querySelector('.code code') || element.querySelector('code');
         if (!codeElement) return;
 
-        let codeText = codeElement.textContent || codeElement.innerText;
+        let codeText;
+        const tempEl = codeElement.cloneNode(true);
+        tempEl.querySelectorAll('br').forEach(br => br.replaceWith('\n'));
+        codeText = tempEl.textContent || tempEl.innerText;
 
-        element.innerHTML = '';
+        const gutter = element.querySelector('.gutter');
+        const lines = codeText.split('\n');
+        if (lines.length > 0 && lines[lines.length - 1] === '') {
+            lines.pop();
+        }
+        const lineCount = lines.length;
 
-        const pre = document.createElement('pre');
-        const code = document.createElement('code');
-        code.className = language ? `hljs language-${language}` : 'hljs';
-        code.textContent = codeText;
-        pre.appendChild(code);
-        element.appendChild(pre);
+        if (gutter) {
+            gutter.innerHTML = '<pre>' + Array.from({ length: lineCount }, (_, i) => `<span class="line">${i + 1}</span><br>`).join('') + '</pre>';
+        }
+
+        codeElement.textContent = codeText;
 
         if (language && hljs.getLanguage(language)) {
-            hljs.highlightElement(code);
+            hljs.highlightElement(codeElement);
         } else {
-            hljs.highlightElement(code);
+            hljs.highlightElement(codeElement);
         }
     }
 
@@ -366,7 +373,7 @@
         document.head.appendChild(link);
 
         const script = document.createElement('script');
-        script.src = '/js/lib/tocbot.min.js';
+        script.src = '/lib/js/tocbot.min.js';
         script.onload = callback;
         document.head.appendChild(script);
     }
@@ -538,6 +545,8 @@
         setTimeout(updateTocPosition, 500);
     }
 
+    let zoomInstance = null;
+
     function initMediumZoom() {
         if (typeof mediumZoom === 'undefined') return;
 
@@ -550,19 +559,23 @@
         images.forEach(img => {
             if (img.closest('a')) return;
             if (img.classList.contains('medium-zoom-image')) return;
+            if (img.hasAttribute('data-src')) return;
             img.classList.add('medium-zoom-image');
         });
 
         document.querySelectorAll('[data-zoomable]').forEach(function (img) {
-            if (!img.classList.contains('medium-zoom-image')) {
+            if (!img.classList.contains('medium-zoom-image') && !img.hasAttribute('data-src')) {
                 img.classList.add('medium-zoom-image');
             }
         });
 
-        mediumZoom('.medium-zoom-image', {
-            margin: 24,
-            background: getComputedStyle(document.documentElement).getPropertyValue('--bg-color') || '#fff'
-        });
+        if (!zoomInstance) {
+            zoomInstance = mediumZoom('.medium-zoom-image', {
+                margin: 24,
+                background: getComputedStyle(document.documentElement).getPropertyValue('--bg-color') || '#fff'
+            });
+            window.mediumZoomInstance = zoomInstance;
+        }
     }
 
     function initPage() {

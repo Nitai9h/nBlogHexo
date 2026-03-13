@@ -115,6 +115,19 @@
             img.removeAttribute('data-src');
             img.removeAttribute('data-srcset');
 
+            if (img.hasAttribute('data-zoomable') && typeof mediumZoom !== 'undefined') {
+                img.classList.add('medium-zoom-image');
+                var globalZoom = window.mediumZoomInstance;
+                if (!globalZoom) {
+                    window.mediumZoomInstance = mediumZoom('.medium-zoom-image', {
+                        margin: 24,
+                        background: getComputedStyle(document.documentElement).getPropertyValue('--bg-color') || '#fff'
+                    });
+                } else {
+                    globalZoom.attach(img);
+                }
+            }
+
             img.dispatchEvent(new CustomEvent('lazyload:loaded', {
                 bubbles: true,
                 detail: { img: img }

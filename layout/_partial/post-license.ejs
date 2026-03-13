@@ -1,8 +1,6 @@
 <% var license=page.license || theme.default_license || 'CC BY-NC-SA 4.0' ; var author=page.author || theme.author ||
   config.author || '作者' ; var isOriginal=page.original !==false; var sourceUrl=page.source_url || '' ; var
-  licenseInfo={ 'CC BY-NC-SA 4.0' : { name: 'CC BY-NC-SA 4.0' ,
-  url: 'https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh' , desc: '署名-非商业性使用-相同方式共享 4.0 国际' } }; var
-  currentLicense=licenseInfo[license] || licenseInfo['CC BY-NC-SA 4.0']; %>
+  currentLicense=license || 'CC BY-NC-SA 4.0' ; %>
   <div class="post-license animate-fade-in-up animate-delay-2">
     <div class="post-license__header">
       <span class="copyright-symbol">©</span>
@@ -33,8 +31,8 @@
         <% } %>
           <div class="post-license__notice">
             <% if (isOriginal) { %>
-              本文为作者原创文章，遵循 <a href="<%= currentLicense.url %>" target="_blank" rel="noopener">
-                <%= currentLicense.name %>
+              本文为作者原创文章，遵循 <a target="_blank" rel="noopener">
+                <%= currentLicense %>
               </a> 许可协议，转载请注明出处。
               <% } else { %>
                 本文仅供学习交流使用，版权归原作者所有，侵权请联系删除

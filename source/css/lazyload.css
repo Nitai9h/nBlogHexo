@@ -1,7 +1,6 @@
 .lazyload-wrapper {
   position: relative;
   overflow: hidden;
-  background: var(--surface-color);
   border-radius: var(--border-radius);
 }
 
@@ -148,11 +147,6 @@ img[data-src].lazyload-loaded {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
-}
-
-.markdown-body .lazyload-wrapper,
-.post-body .lazyload-wrapper {
-  margin: 16px 0;
 }
 
 .markdown-body .lazyload-image,
