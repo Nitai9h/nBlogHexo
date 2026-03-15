@@ -89,3 +89,10 @@ notifications:
   interval: 10000
   items:
     - message: '欢迎访问我的博客！'
+
+# 51LA Analytics
+five_one_la:
+  enable: false
+  id: "xxx"
+  ck: "xxx"
+  autoTrack: true
