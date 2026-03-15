@@ -157,17 +157,17 @@
                   });
                 </script>
                 <% } %>
-                
-                <% if (config.five_one_la && config.five_one_la.enable) { %>
-                  <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
-                  <script>
-                    LA.init({
-                      id: "<%= config.five_one_la.id %>",
-                      ck: "<%= config.five_one_la.ck %>",
-                      autoTrack: <%= config.five_one_la.autoTrack %>
-                    })
-                  </script>
-                <% } %>
+
+                  <% if (theme.five_one_la && theme.five_one_la.enable) { %>
+                    <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script>
+                    <script>
+                      LA.init({
+                        id: '<%= theme.five_one_la.id %>',
+                        ck: '<%= theme.five_one_la.ck %>',
+                        autoTrack: '<%= theme.five_one_la.autoTrack %>'
+                      })
+                    </script>
+                    <% } %>
 </body>
 
 </html>
